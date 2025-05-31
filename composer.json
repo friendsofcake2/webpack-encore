@@ -1,0 +1,19 @@
+{
+    "name": "cakephp2-plugin/webpack-encore",
+    "type": "cakephp-plugin",
+    "license": "MIT",
+    "require": {
+        "php": "^8.0",
+        "cakephp/cakephp": "^2.10",
+        "composer/installers": "*"
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "composer/installers": true
+        }
+    },
+    "extra": {
+        "installer-name": "WebpackEncore"
+    }
+}
