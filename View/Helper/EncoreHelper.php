@@ -6,7 +6,7 @@ class EncoreHelper extends AppHelper
 {
     public $helpers = ['Html'];
 
-    public HtmlHelper $Html;
+    public ?HtmlHelper $Html = null;
 
     /**
      * Full filesystem path to Encore's entrypoints.json.
