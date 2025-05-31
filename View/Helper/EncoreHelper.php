@@ -6,8 +6,6 @@ class EncoreHelper extends AppHelper
 {
     public $helpers = ['Html'];
 
-    public ?HtmlHelper $Html = null;
-
     /**
      * Full filesystem path to Encore's entrypoints.json.
      */
@@ -93,7 +91,7 @@ class EncoreHelper extends AppHelper
     /**
      * Render <link> tags for the given entry's CSS files.
      */
-    public function entryLinkTags(string $entryName, array $options = []): string
+    public function entryLinkTags(string $entryName, array $options = [])
     {
         $this->loadEntrypoints();
         if (empty($this->entrypoints[$entryName]['css'])) {
@@ -111,7 +109,7 @@ class EncoreHelper extends AppHelper
     /**
      * Render <script> tags for the given entry's JS files.
      */
-    public function entryScriptTags(string $entryName, array $options = []): string
+    public function entryScriptTags(string $entryName, array $options = [])
     {
         $this->loadEntrypoints();
         if (empty($this->entrypoints[$entryName]['js'])) {
@@ -166,7 +164,7 @@ class EncoreHelper extends AppHelper
      *
      * @param array|string $assetPaths Logical asset path or array of paths
      * @param array  $options   Additional options for HtmlHelper::css
-     * @return string
+     * @return mixed
      */
     public function css(array|string $assetPaths, array $options = [])
     {
@@ -186,7 +184,7 @@ class EncoreHelper extends AppHelper
      *
      * @param array|string $assetPaths Logical asset path or array of paths
      * @param array  $options   Additional options for HtmlHelper::script
-     * @return string
+     * @return mixed
      */
     public function script(array|string $assetPaths, array $options = [])
     {
