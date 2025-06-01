@@ -2,9 +2,26 @@
 
 App::uses('AppHelper', 'View/Helper');
 
+/**
+ * @property HtmlHelper $Html
+ */
 class EncoreHelper extends AppHelper
 {
     public $helpers = ['Html'];
+
+    /**
+     * Strip the request's webroot prefix from the beginning of each path if present.
+     *
+     * @param array $paths
+     * @return array
+     */
+    protected function stripWebrootPrefix(array $paths): array
+    {
+        $prefix = $this->request->webroot;
+        return array_map(function ($path) use ($prefix) {
+            return str_starts_with($path, $prefix) ? substr($path, strlen($prefix)) : $path;
+        }, $paths);
+    }
 
     /**
      * Full filesystem path to Encore's entrypoints.json.
@@ -98,9 +115,11 @@ class EncoreHelper extends AppHelper
             return '';
         }
         // Resolve and return all CSS tags in one call
-        $options = array_merge(['inline' => false, 'fullBase' => false], $options);
+        $options = array_merge(['inline' => false], $options);
+        $resolvedList = $this->entrypoints[$entryName]['css'];
+        $resolvedList = $this->stripWebrootPrefix($resolvedList);
         return $this->Html->css(
-            $this->entrypoints[$entryName]['css'],
+            $resolvedList,
             $options
         );
     }
@@ -115,10 +134,12 @@ class EncoreHelper extends AppHelper
             return '';
         }
         // Default defer => true and inline => false unless overridden
-        $options = array_merge(['defer' => true, 'inline' => false, 'fullBase' => false], $options);
+        $options = array_merge(['defer' => true, 'inline' => false], $options);
         // Resolve and return all JS tags in one call
+        $resolvedList = $this->entrypoints[$entryName]['js'];
+        $resolvedList = $this->stripWebrootPrefix($resolvedList);
         return $this->Html->script(
-            $this->entrypoints[$entryName]['js'],
+            $resolvedList,
             $options
         );
     }
@@ -173,9 +194,9 @@ class EncoreHelper extends AppHelper
         foreach ($paths as $path) {
             $resolvedList[] = $this->asset($path);
         }
-
+        $resolvedList = $this->stripWebrootPrefix($resolvedList);
         // Delegate to HtmlHelper once with the array of resolved paths
-        return $this->Html->css($resolvedList, null, $options);
+        return $this->Html->css($resolvedList, $options);
     }
 
     /**
@@ -193,7 +214,7 @@ class EncoreHelper extends AppHelper
         foreach ($paths as $path) {
             $resolvedList[] = $this->asset($path);
         }
-
+        $resolvedList = $this->stripWebrootPrefix($resolvedList);
         // Delegate to HtmlHelper once with the array of resolved paths
         return $this->Html->script($resolvedList, $options);
     }
