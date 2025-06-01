@@ -98,10 +98,9 @@ class EncoreHelper extends AppHelper
             return '';
         }
         // Resolve and return all CSS tags in one call
-        $options = array_merge(['inline' => false], $options);
+        $options = array_merge(['inline' => false, 'fullBase' => false], $options);
         return $this->Html->css(
             $this->entrypoints[$entryName]['css'],
-            null,
             $options
         );
     }
@@ -116,7 +115,7 @@ class EncoreHelper extends AppHelper
             return '';
         }
         // Default defer => true and inline => false unless overridden
-        $options = array_merge(['defer' => true, 'inline' => false], $options);
+        $options = array_merge(['defer' => true, 'inline' => false, 'fullBase' => false], $options);
         // Resolve and return all JS tags in one call
         return $this->Html->script(
             $this->entrypoints[$entryName]['js'],
