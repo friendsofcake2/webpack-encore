@@ -19,7 +19,7 @@ class EncoreHelper extends AppHelper
     {
         $prefix = $this->request->webroot;
         return array_map(function ($path) use ($prefix) {
-            return str_starts_with($path, $prefix) ? substr($path, strlen($prefix)) : $path;
+            return str_starts_with($path, $prefix) ? '/'.substr($path, strlen($prefix)) : $path;
         }, $paths);
     }
 
