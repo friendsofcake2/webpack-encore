@@ -2,7 +2,6 @@
 
 This helper allows you to integrate Symfony Webpack Encore–built assets (CSS, JS, images) into a CakePHP 2 application. It reads `entrypoints.json` and `manifest.json` to resolve fingerprinted asset filenames and output proper `<link>`, `<script>`, or `<img>` tags.
 
----
 
 ## Installation
 
@@ -139,7 +138,6 @@ echo $this->Encore->entryScriptTags('app', ['block' => true]);
 // Outputs three <script> tags for the app entry's JS files
 ```
 
----
 
 ## Example Layout Integration
 
@@ -179,7 +177,6 @@ In `app/View/Layouts/default.ctp`:
 - `<body>`: `entryScriptTags('app')` outputs `<script>` tags for all JS associated with the `app` entry.
 - The `image()` method resolves and renders an `<img>` tag for an image asset.
 
----
 
 ## Notes
 
@@ -187,7 +184,6 @@ In `app/View/Layouts/default.ctp`:
 - This helper expects the paths in both JSON files to start with `/build/...`. If you use a different directory, adjust the JSON outputs or change `Configure::write('Encore.entrypointsPath', ...)` and `Configure::write('Encore.manifestPath', ...)` accordingly.
 - The helper loads and caches both JSON files once in its constructor for performance. Subsequent calls will not re-read the files.
 
----
 
 ## License
 
