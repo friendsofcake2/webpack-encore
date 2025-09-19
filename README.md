@@ -1,9 +1,20 @@
 # CakePHP 2.x Webpack Encore Plugin
 
+[![GitHub License](https://img.shields.io/github/license/friendsofcake2/webpack-encore?label=License)](LICENSE)
+[![Packagist Version](https://img.shields.io/packagist/v/friendsofcake2/webpack-encore?label=Packagist)](https://packagist.org/packages/friendsofcake2/webpack-encore)
+[![Packagist Dependency Version](https://img.shields.io/packagist/dependency-v/friendsofcake2/webpack-encore/php?logo=php&logoColor=%23FFFFFF&label=PHP&labelColor=%23777BB4&color=%23FFFFFF)](https://packagist.org/packages/friendsofcake2/webpack-encore)
+[![Packagist Dependency Version](https://img.shields.io/packagist/dependency-v/friendsofcake2/webpack-encore/cakephp/cakephp?logo=cakephp&logoColor=%23FFFFFF&label=CakePHP&labelColor=%23D33C43&color=%23FFFFFF)](https://packagist.org/packages/friendsofcake2/webpack-encore)
+[![Tests](https://img.shields.io/github/actions/workflow/status/friendsofcake2/webpack-encore/tests.yml?label=Tests)](https://github.com/friendsofcake2/webpack-encore/actions/workflows/tests.yml)
+[![Codecov](https://img.shields.io/codecov/c/gh/friendsofcake2/webpack-encore?label=Coverage)](https://codecov.io/gh/friendsofcake2/webpack-encore)
+
 This helper allows you to integrate Symfony Webpack Encore–built assets (CSS, JS, images) into a CakePHP 2 application. It reads `entrypoints.json` and `manifest.json` to resolve fingerprinted asset filenames and output proper `<link>`, `<script>`, or `<img>` tags.
 
-
 ## Installation
+
+0. **Install plugin**:
+   ```bash
+   composer require friendsofcake2/webpack-encore
+   ```
 
 1. **Build your Encore assets** (e.g., with Symfony Encore or webpack). From your project root, run:
    ```bash
